@@ -131,6 +131,8 @@ spec:
           image: {{ .Values.geoip.image.repository }}:{{ .Values.geoip.image.tag }}{{- if .Values.geoip.image.digest -}}@{{ .Values.geoip.image.digest }}{{- end }}
           imagePullPolicy: {{ .Values.geoip.image.pullPolicy }}
           env:
+            - name: TMPDIR
+              value: /tmp
             {{- with .Values.geoip.env }}
               {{- toYaml . | nindent 12 }}
             {{- end }}
